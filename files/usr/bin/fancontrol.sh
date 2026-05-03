@@ -1,13 +1,23 @@
 #!/bin/sh
-# Fan control daemon: 4-level PWM based on CPU temperature
-# Thresholds match vendor Mwrt fancts.sh behaviour
+# Fan control daemon: 4-level PWM based on CPU temperature.
+# Matches vendor Mwrt fancts.sh thresholds.
 
-PWM_PATH="/sys/devices/platform/pwm-fan/hwmon/hwmon2/pwm1"
 TEMP_PATH="/sys/class/thermal/thermal_zone0/temp"
 
-[ -e "$PWM_PATH" ] || { logger -t fancontrol "PWM path not found, exiting"; exit 1; }
+# Locate the pwm-fan hwmon node dynamically (avoids hardcoding hwmon index)
+find_pwm() {
+	find /sys/devices/platform -path "*/pwm*/hwmon/hwmon*/pwm1" 2>/dev/null | head -1
+}
 
-logger -t fancontrol "Fan control daemon started"
+PWM_PATH=$(find_pwm)
+if [ -z "$PWM_PATH" ]; then
+	logger -t fancontrol "PWM path not found, retrying in 30s"
+	sleep 30
+	PWM_PATH=$(find_pwm)
+fi
+[ -z "$PWM_PATH" ] && { logger -t fancontrol "PWM path not found, exiting"; exit 1; }
+
+logger -t fancontrol "Fan control started, PWM at $PWM_PATH"
 
 while true; do
 	temp=$(cat "$TEMP_PATH" 2>/dev/null)
