@@ -35,3 +35,8 @@ git-src
 .cproject
 .ccache
 .vscode*
+firmware_out/
+monitor.sh
+notify_build.sh
+notify_router.sh
+start_build.sh
