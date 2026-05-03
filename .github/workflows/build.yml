@@ -67,20 +67,21 @@ jobs:
           "CONFIG_PACKAGE_luci-app-opkg=y" \
           "CONFIG_PACKAGE_luci-theme-bootstrap=y" \
           "" \
-          "# Hardware NAT acceleration (line-rate 2.5G NAT offload)" \
-          "CONFIG_PACKAGE_kmod-mediatek_hnat=y" \
+          "# Hardware NAT: filogic PPE is always built into the kernel." \
+          "# Enable via LuCI Firewall -> Hardware flow offloading after flash." \
+          "CONFIG_PACKAGE_kmod-nft-offload=y" \
           "" \
-          "# Fan control" \
+          "# Fan control (kmod + daemon baked in via files/)" \
           "CONFIG_PACKAGE_kmod-hwmon-pwmfan=y" \
           "CONFIG_PACKAGE_kmod-hwmon-core=y" \
           "" \
-          "# WiFi (mt76 open-source driver, MT7992 HE/WiFi6 mode)" \
+          "# WiFi7 - MT7992 BE5040 via open-source mt76 (kernel 6.18, EHT capable)" \
           "CONFIG_PACKAGE_kmod-mt76=y" \
           "CONFIG_PACKAGE_kmod-mt76-core=y" \
           "CONFIG_PACKAGE_kmod-mt76-connac=y" \
           "CONFIG_PACKAGE_kmod-mt7996e=y" \
           "" \
-          "# 5G modem - Quectel RM520N-GL" \
+          "# 5G modem - Quectel RM520N-GL (QMI + MBIM fallback)" \
           "CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y" \
           "CONFIG_PACKAGE_kmod-usb-serial-option=y" \
           "CONFIG_PACKAGE_uqmi=y" \
@@ -94,7 +95,7 @@ jobs:
           "CONFIG_PACKAGE_luci-app-wireguard=y" \
           "CONFIG_PACKAGE_luci-proto-wireguard=y" \
           "" \
-          "# eMMC filesystem tools" \
+          "# eMMC filesystem tools (also in DEVICE_PACKAGES, explicit for safety)" \
           "CONFIG_PACKAGE_f2fsck=y" \
           "CONFIG_PACKAGE_mkf2fs=y" \
           "" \
