@@ -1578,34 +1578,6 @@ define Device/elecom_wrc-x3000gs3
 endef
 TARGET_DEVICES += elecom_wrc-x3000gs3
 
-define Device/elecom_wrc-x6000gsd
-  DEVICE_VENDOR := ELECOM
-  DEVICE_MODEL := WRC-X6000GSD
-  DEVICE_DTS := mt7986b-elecom-wrc-x6000gsd
-  DEVICE_DTS_DIR := ../dts
-  DEVICE_DTS_LOADADDR := 0x47000000
-  IMAGES += factory.bin
-  IMAGE/factory.bin := sysupgrade-tar | mstc-header 5.04(XZR.0)b90 YTC@ | \
-	elecom-product-header WRC-X6000GS
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7986-firmware mt7986-wo-firmware
-endef
-TARGET_DEVICES += elecom_wrc-x6000gsd
-
-define Device/elecom_wrc-x6000qs
-  DEVICE_VENDOR := ELECOM
-  DEVICE_MODEL := WRC-X6000QS
-  DEVICE_DTS := mt7986b-elecom-wrc-x6000qs
-  DEVICE_DTS_DIR := ../dts
-  DEVICE_DTS_LOADADDR := 0x47000000
-  IMAGES += factory.bin
-  IMAGE/factory.bin := sysupgrade-tar | mstc-header 5.04(XZL.0)b90 COMD | \
-	elecom-product-header WRC-X6000QS
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7986-firmware mt7986-wo-firmware
-endef
-TARGET_DEVICES += elecom_wrc-x6000qs
-
 define Device/gatonetworks_gdsp
   DEVICE_VENDOR := GatoNetworks
   DEVICE_MODEL := gdsp
@@ -1773,6 +1745,18 @@ define Device/h3c_magic-nx30-pro
   ARTIFACT/bl31-uboot.fip := mt7981-bl31-uboot h3c_magic-nx30-pro
 endef
 TARGET_DEVICES += h3c_magic-nx30-pro
+
+define Device/hiveton_h5000m
+  DEVICE_VENDOR := Hiveton
+  DEVICE_MODEL := H5000M
+  DEVICE_DTS := mt7987a-hiveton-h5000m
+  DEVICE_DTS_DIR := ../dts
+  DEVICE_PACKAGES := kmod-hwmon-pwmfan kmod-usb3 mt7987-2p5g-phy-firmware \
+	kmod-mt7996e kmod-mt7992-23-firmware f2fsck mkf2fs
+  KERNEL_LOADADDR := 0x40080000
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += hiveton_h5000m
 
 define Device/huasifei_wh3000
   DEVICE_VENDOR := Huasifei
