@@ -180,8 +180,7 @@
 	pinctrl-0 = <&pcie0_pins>;
 	reset-gpios = <&pio 36 GPIO_ACTIVE_HIGH>;
 	status = "okay";
-	max-link-speed = <2>;
-
+	
 	pcie@0,0 {
 		reg = <0x0000 0 0 0 0>;
 		#address-cells = <3>;
