@@ -60,20 +60,48 @@ jobs:
           "CONFIG_TARGET_mediatek=y" \
           "CONFIG_TARGET_mediatek_filogic=y" \
           "CONFIG_TARGET_mediatek_filogic_DEVICE_hiveton_h5000m=y" \
+          "" \
+          "# LuCI" \
           "CONFIG_PACKAGE_luci=y" \
           "CONFIG_PACKAGE_luci-app-firewall=y" \
           "CONFIG_PACKAGE_luci-app-opkg=y" \
           "CONFIG_PACKAGE_luci-theme-bootstrap=y" \
+          "" \
+          "# Hardware NAT acceleration (line-rate 2.5G NAT offload)" \
+          "CONFIG_PACKAGE_kmod-mediatek_hnat=y" \
+          "" \
+          "# Fan control" \
           "CONFIG_PACKAGE_kmod-hwmon-pwmfan=y" \
+          "CONFIG_PACKAGE_kmod-hwmon-core=y" \
+          "" \
+          "# WiFi (mt76 open-source driver, MT7992 HE/WiFi6 mode)" \
+          "CONFIG_PACKAGE_kmod-mt76=y" \
+          "CONFIG_PACKAGE_kmod-mt76-core=y" \
+          "CONFIG_PACKAGE_kmod-mt76-connac=y" \
+          "CONFIG_PACKAGE_kmod-mt7996e=y" \
+          "" \
+          "# 5G modem - Quectel RM520N-GL" \
           "CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y" \
           "CONFIG_PACKAGE_kmod-usb-serial-option=y" \
           "CONFIG_PACKAGE_uqmi=y" \
           "CONFIG_PACKAGE_libqmi=y" \
           "CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y" \
           "CONFIG_PACKAGE_umbim=y" \
-          "CONFIG_PACKAGE_kmod-mt76=y" \
+          "" \
+          "# WireGuard VPN" \
+          "CONFIG_PACKAGE_kmod-wireguard=y" \
+          "CONFIG_PACKAGE_wireguard-tools=y" \
+          "CONFIG_PACKAGE_luci-app-wireguard=y" \
+          "CONFIG_PACKAGE_luci-proto-wireguard=y" \
+          "" \
+          "# eMMC filesystem tools" \
+          "CONFIG_PACKAGE_f2fsck=y" \
+          "CONFIG_PACKAGE_mkf2fs=y" \
+          "" \
+          "# Utilities" \
           "CONFIG_PACKAGE_htop=y" \
           "CONFIG_PACKAGE_tcpdump=y" \
+          "CONFIG_PACKAGE_kmod-usb3=y" \
           > .config
         make defconfig
 
