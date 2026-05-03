@@ -173,6 +173,7 @@ platform_do_upgrade() {
 	glinet,gl-mt6000|\
 	glinet,gl-x3000|\
 	glinet,gl-xe3000|\
+	hiveton,h5000m|\
 	huasifei,wh3000|\
 	huasifei,wh3000-pro-emmc|\
 	smartrg,sdg-8612|\
@@ -227,9 +228,7 @@ platform_do_upgrade() {
 		fw_setenv sw_tryactive 0
 		nand_do_upgrade "$1"
 		;;
-	elecom,wrc-x3000gs3|\
-	elecom,wrc-x6000gsd|\
-	elecom,wrc-x6000qs)
+	elecom,wrc-x3000gs3)
 		local bootnum="$(mstc_rw_bootnum)"
 		case "$bootnum" in
 		1|2)
@@ -363,6 +362,7 @@ platform_check_image() {
 		;;
 	creatlentem,clt-r30b1|\
 	creatlentem,clt-r30b1-112m|\
+	hiveton,h5000m|\
 	nradio,c8-668gl)
 		# tar magic `ustar`
 		magic="$(dd if="$1" bs=1 skip=257 count=5 2>/dev/null)"
@@ -408,6 +408,7 @@ platform_copy_config() {
 	glinet,gl-mt6000|\
 	glinet,gl-x3000|\
 	glinet,gl-xe3000|\
+	hiveton,h5000m|\
 	huasifei,wh3000|\
 	huasifei,wh3000-pro-emmc|\
 	jdcloud,re-cp-03|\
@@ -445,13 +446,6 @@ platform_pre_upgrade() {
 		;;
 	buffalo,wsr-6000ax8)
 		buffalo_initial_setup
-		;;
-	elecom,wrc-x6000gsd|\
-	elecom,wrc-x6000qs)
-		local delay=$(fw_printenv -n bootmenu_delay)
-
-		[ -z "$delay" ] || [ "$delay" -eq "0" ] && \
-			fw_setenv bootmenu_delay 3
 		;;
 	xiaomi,mi-router-ax3000t|\
 	xiaomi,mi-router-wr30u-stock|\
