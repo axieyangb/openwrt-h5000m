@@ -1752,10 +1752,15 @@ define Device/hiveton_h5000m
   DEVICE_DTS := mt7987a-hiveton-h5000m
   DEVICE_DTS_DIR := ../dts
   DEVICE_PACKAGES := kmod-hwmon-pwmfan kmod-usb3 mt7987-2p5g-phy-firmware \
-	kmod-mt7996e kmod-mt7992-23-firmware f2fsck mkf2fs \
+	kmod-mt7996e kmod-mt7992-23-firmware e2fsprogs f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
 	kmod-nft-offload luci luci-app-firewall luci-app-opkg luci-theme-bootstrap
   KERNEL_LOADADDR := 0x40080000
+  KERNEL = kernel-bin | lzma | \
+	fit lzma $(KDIR)/image-$(firstword $(DEVICE_DTS)).dtb
+  KERNEL_INITRAMFS = kernel-bin | lzma | \
+	fit lzma $(KDIR)/image-$(firstword $(DEVICE_DTS)).dtb with-initrd
+  IMAGE_SIZE := 512m
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
 TARGET_DEVICES += hiveton_h5000m
