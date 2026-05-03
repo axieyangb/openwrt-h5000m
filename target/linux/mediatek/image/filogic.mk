@@ -1754,7 +1754,7 @@ define Device/hiveton_h5000m
   DEVICE_PACKAGES := kmod-hwmon-pwmfan kmod-usb3 mt7987-2p5g-phy-firmware \
 	kmod-mt7996e kmod-mt7992-23-firmware f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
-	kmod-nft-offload
+	kmod-nft-offload luci luci-app-firewall luci-app-opkg luci-theme-bootstrap
   KERNEL_LOADADDR := 0x40080000
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef

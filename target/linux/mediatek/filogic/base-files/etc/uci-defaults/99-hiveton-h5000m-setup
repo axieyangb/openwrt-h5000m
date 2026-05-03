@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# 1. Enable Hardware NAT Offloading
+uci -q set firewall.@defaults[0].flow_offloading='1'
+uci -q set firewall.@defaults[0].flow_offloading_hw='1'
+
+# 2. Setup 5G Cellular Modem (Quectel QMI)
+uci -q set network.wan_5g=interface
+uci -q set network.wan_5g.proto='qmi'
+uci -q set network.wan_5g.device='/dev/cdc-wdm0'
+uci -q set network.wan_5g.pdptype='ipv4v6'
+
+# Add wan_5g to WAN firewall zone (typically zone 1 is wan)
+uci -q del_list firewall.@zone[1].network='wan_5g'
+uci -q add_list firewall.@zone[1].network='wan_5g'
+
+# Remove redundant wwan interface if the system auto-generated it
+uci -q delete network.wwan
+uci -q del_list firewall.@zone[1].network='wwan'
+
+# 3. Setup Wi-Fi Default Networks
+# Enable the radios, set the default SSIDs, and configure WPA3 encryption
+uci -q set wireless.default_radio0.disabled='0'
+uci -q set wireless.default_radio1.disabled='0'
+uci -q set wireless.default_radio0.ssid='Hiveton_H5000M_2.4G'
+uci -q set wireless.default_radio1.ssid='Hiveton_H5000M_5G'
+uci -q set wireless.default_radio0.encryption='none'
+uci -q set wireless.default_radio1.encryption='none'
+
+# Commit all changes to NVRAM
+uci commit firewall
+uci commit network
+uci commit wireless
+
+exit 0
