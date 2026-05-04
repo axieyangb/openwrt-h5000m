@@ -1754,7 +1754,8 @@ define Device/hiveton_h5000m
   DEVICE_PACKAGES := kmod-hwmon-pwmfan kmod-usb3 mt7987-2p5g-phy-firmware \
 	kmod-mt7996e kmod-mt7992-23-firmware e2fsprogs f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
-	kmod-nft-offload luci luci-app-firewall luci-app-opkg luci-theme-bootstrap
+	kmod-nft-offload luci luci-app-firewall luci-app-opkg luci-theme-bootstrap \
+	wireguard-tools luci-proto-wireguard htop bash pciutils kmod-tcp-bbr
   KERNEL_LOADADDR := 0x40080000
   IMAGE_SIZE := 512m
   IMAGES := sysupgrade.bin
