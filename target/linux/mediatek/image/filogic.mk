@@ -1755,15 +1755,15 @@ define Device/hiveton_h5000m
 	kmod-mt7996e kmod-mt7992-23-firmware e2fsprogs f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
 	kmod-nft-offload luci luci-app-firewall luci-app-opkg luci-theme-bootstrap \
-	wireguard-tools luci-proto-wireguard kmod-tun kmod-tcp-bbr luci-app-sqm \
-	pciutils htop bash kmod-fs-ntfs3 kmod-fs-exfat
+	wireguard-tools luci-proto-wireguard kmod-tun htop bash kmod-fs-exfat
   KERNEL_LOADADDR := 0x40080000
-  KERNEL = kernel-bin | lzma | \
-	fit lzma $(KDIR)/image-$(firstword $(DEVICE_DTS)).dtb
-  KERNEL_INITRAMFS = kernel-bin | lzma | \
-	fit lzma $(KDIR)/image-$(firstword $(DEVICE_DTS)).dtb with-initrd
+  KERNEL := kernel-bin | lzma | \
+	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd
   IMAGE_SIZE := 512m
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGES := sysupgrade.bin
+  IMAGE/sysupgrade.bin := append-kernel | pad-rootfs | append-metadata
 endef
 TARGET_DEVICES += hiveton_h5000m
 
