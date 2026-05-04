@@ -19,13 +19,19 @@ uci -q delete network.wwan
 uci -q del_list firewall.@zone[1].network='wwan'
 
 # 3. Setup Wi-Fi Default Networks
-# Enable the radios, set the default SSIDs, and configure WPA3 encryption
+# Enable the radios, set the default SSIDs, and configure WPA3/WPA2 encryption
 uci -q set wireless.default_radio0.disabled='0'
 uci -q set wireless.default_radio1.disabled='0'
 uci -q set wireless.default_radio0.ssid='Hiveton_H5000M_2.4G'
 uci -q set wireless.default_radio1.ssid='Hiveton_H5000M_5G'
-uci -q set wireless.default_radio0.encryption='none'
-uci -q set wireless.default_radio1.encryption='none'
+uci -q set wireless.default_radio0.encryption='psk2'
+uci -q set wireless.default_radio1.encryption='psk2'
+# WPA2 requires at least 8 characters, so using adminadmin instead of admin
+uci -q set wireless.default_radio0.key='adminadmin'
+uci -q set wireless.default_radio1.key='adminadmin'
+
+# 4. Set Default Login Password to admin
+echo -e "admin\nadmin" | passwd root
 
 # Commit all changes to NVRAM
 uci commit firewall
