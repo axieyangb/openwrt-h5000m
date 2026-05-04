@@ -1755,7 +1755,6 @@ define Device/hiveton_h5000m
 	kmod-mt7996e kmod-mt7992-23-firmware e2fsprogs f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
 	kmod-nft-offload luci luci-app-firewall luci-theme-bootstrap \
-	-wpad-basic-mbedtls wpad-mesh-mbedtls \
 	wireguard-tools luci-proto-wireguard kmod-tun kmod-tcp-bbr luci-app-sqm \
 	pciutils htop bash kmod-fs-ntfs3 kmod-fs-exfat
   KERNEL_LOADADDR := 0x40080000
