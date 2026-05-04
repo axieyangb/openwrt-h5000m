@@ -1755,7 +1755,7 @@ define Device/hiveton_h5000m
 	kmod-mt7996e kmod-mt7992-23-firmware e2fsprogs f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
 	kmod-nft-offload luci luci-app-firewall luci-theme-bootstrap \
-	wireguard-tools luci-proto-wireguard kmod-tun htop bash pciutils
+	-wpad-basic-mbedtls
   KERNEL_LOADADDR := 0x40080000
   KERNEL := kernel-bin | lzma | \
 	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
