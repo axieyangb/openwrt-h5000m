@@ -10,6 +10,7 @@ echo "CONFIG_TARGET_mediatek=y" > .config
 echo "CONFIG_TARGET_mediatek_filogic=y" >> .config
 echo "CONFIG_TARGET_mediatek_filogic_DEVICE_hiveton_h5000m=y" >> .config
 echo "CONFIG_PACKAGE_luci-app-passwall=y" >> .config
+echo "CONFIG_PACKAGE_opkg=y" >> .config
 make defconfig
 useradd -m builduser
 chown -R builduser:builduser /openwrt

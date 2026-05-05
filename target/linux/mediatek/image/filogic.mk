@@ -1755,7 +1755,7 @@ define Device/hiveton_h5000m
 	kmod-mt7996e kmod-mt7992-23-firmware e2fsprogs f2fsck mkf2fs \
 	kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi luci-proto-qmi usbutils \
 	kmod-nft-offload luci luci-app-firewall luci-app-opkg luci-theme-bootstrap \
-	wireguard-tools luci-proto-wireguard htop bash pciutils kmod-tcp-bbr
+	wireguard-tools luci-proto-wireguard kmod-wireguard htop bash pciutils kmod-tcp-bbr
   KERNEL_LOADADDR := 0x40080000
   IMAGE_SIZE := 512m
   IMAGES := sysupgrade.bin
@@ -2703,7 +2703,7 @@ define Device/openwrt_one
   DEVICE_DTS_DIR := ../dts
   DEVICE_DTC_FLAGS := --pad 4096
   DEVICE_DTS_LOADADDR := 0x43f00000
-  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware kmod-rtc-pcf8563 kmod-usb3 kmod-phy-airoha-en8811h
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware kmod-rtc-pcf8563 kmod-usb3
   KERNEL_LOADADDR := 0x44000000
   KERNEL := kernel-bin | gzip
   KERNEL_INITRAMFS := kernel-bin | lzma | \
@@ -2740,7 +2740,7 @@ define Device/openwrt_one
 			      recovery=:$(KDIR)/tmp/$$(KERNEL_INITRAMFS_IMAGE)) \
 		   $(if $(wildcard $(TOPDIR)/openwrt-mediatek-filogic-openwrt_one-calibration.itb), calibration=:$(TOPDIR)/openwrt-mediatek-filogic-openwrt_one-calibration.itb)
 endef
-TARGET_DEVICES += openwrt_one
+# TARGET_DEVICES += openwrt_one
 
 define Device/qihoo_360t7
   DEVICE_VENDOR := Qihoo

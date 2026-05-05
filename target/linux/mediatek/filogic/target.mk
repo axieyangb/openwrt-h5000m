@@ -4,7 +4,7 @@ BOARDNAME:=Filogic 8x0 (MT798x)
 CPU_TYPE:=cortex-a53
 DEFAULT_PACKAGES += fitblk kmod-crypto-hw-safexcel wpad-mesh-mbedtls uboot-envtools
 KERNELNAME:=Image dtbs
-DEFAULT_PROFILE:=openwrt_one
+DEFAULT_PROFILE:=hiveton_h5000m
 
 define Target/Description
 	Build firmware images for MediaTek Filogic ARM based boards.

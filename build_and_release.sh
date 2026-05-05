@@ -101,6 +101,7 @@ CONFIG_TARGET_mediatek=y
 CONFIG_TARGET_mediatek_filogic=y
 CONFIG_TARGET_mediatek_filogic_DEVICE_hiveton_h5000m=y
 CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_opkg=y
 EOF
     make defconfig
   "
