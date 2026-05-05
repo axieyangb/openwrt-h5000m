@@ -83,7 +83,12 @@ if [[ "$SKIP_BUILD" == "false" ]]; then
 
   log "Cloning source from GitHub (branch: ${BRANCH})..."
   docker exec "$CONTAINER_NAME" bash -c "
-    git clone --depth=1 -b ${BRANCH} https://${GH_TOKEN}@github.com/${GH_REPO}.git /openwrt
+    if [ -d /openwrt/.git ]; then
+      cd /openwrt && git fetch origin ${BRANCH} && git reset --hard origin/${BRANCH}
+    else
+      rm -rf /openwrt/* /openwrt/.* 2>/dev/null || true
+      git clone --depth=1 -b ${BRANCH} https://${GH_TOKEN}@github.com/${GH_REPO}.git /openwrt
+    fi
   "
 
   log "Updating feeds..."
