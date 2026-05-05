@@ -7,3 +7,5 @@ src-git video https://github.com/openwrt/video.git
 #src-git oldpackages http://git.openwrt.org/packages.git
 #src-link custom /usr/src/openwrt/custom-feed
 src-git modem_feeds https://github.com/FUjr/modem_feeds.git
+src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main
+src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main
